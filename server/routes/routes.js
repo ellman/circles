@@ -5,13 +5,16 @@ var mongoose = require('mongoose'),
 /* jshint -W098 */
 // The Package is past automatically as first parameter
 module.exports = function(Circles, app, auth, database) {
-var meanio = require('meanio');
+  var meanio = require('meanio');
+
+
 
   app.get('/api/test', function(req, res) {
-    meanio.db.find('Project', function(err, data) {
-      console.log(err);
-      console.log(data);
-      console.log('here')
+    //  console.log(arguments);
+
+
+    req.acl.find('Project', {}, {_id:0}, function(err, data) {
+      res.send(data);
     });
 
     return;
